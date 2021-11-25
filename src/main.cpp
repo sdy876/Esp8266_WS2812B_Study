@@ -1,18 +1,26 @@
+/* ESP8266模块在Nodemcu开发板上的程序实操 ： 控制12个WS2812B的灯环实现模拟警灯的各种显示效果 */
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
+/* 定义数据针脚，定义灯珠数量 */
 #define PIN D5
 #define NUMPIXELS 12
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+/* 定义标准短延时和标准 */
 #define DELAYVAL 100
 #define DELAYFOO 400
 
+/*  初始化LED,只执行一次  */
 void setup()
 {
   pixels.begin();
 }
 
+/* 定义各功能函数 */
+
+// 红灯/蓝灯三连闪并交替
 void Tripleflash()
 {
   pixels.clear();
@@ -52,6 +60,7 @@ void Tripleflash()
   delay(DELAYFOO);
 }
 
+// 红灯蓝灯交替闪烁
 void Flash()
 {
   for (int i = 0; i < 3; i++)
@@ -72,6 +81,7 @@ void Flash()
   pixels.clear();
 }
 
+// 红灯蓝灯流水
 void Chase_redblue()
 {
   for (int k = 0; k < 9; k = k + 3)
@@ -108,6 +118,7 @@ void Chase_redblue()
   delay(250);
 }
 
+// 模拟真实警灯闪烁
 void Real_partol()
 {
   int i = 0;
@@ -128,6 +139,7 @@ void Real_partol()
   pixels.clear();
 }
 
+/* 主功能函数，循环执行 */
 void loop()
 {
   for (int x = 0; x < 3; x++)
