@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
-/* 定义数据针脚，定义灯珠数量 */
+/* 定义数据针脚为 D5，定义灯珠数量为 12 */
 #define PIN D5
 #define NUMPIXELS 12
 
