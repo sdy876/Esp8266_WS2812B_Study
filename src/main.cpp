@@ -1,4 +1,5 @@
-/*  ESP8266模块在Nodemcu开发板上的程序实操 ：控制由12个WS2812B模块组成的灯环实现模拟警灯的各种显示效果 */
+/*  ESP8266模块在Nodemcu开发板上的程序实操 */
+/* 控制由12个WS2812B模块组成的灯环实现模拟警灯的各种显示效果  */
 
 /* 包含Ardinou标准头文件 和 Adafruit灯珠控制头文件 */
 #include <Arduino.h>
@@ -8,6 +9,7 @@
 #define PIN D5
 #define NUMPIXELS 12
 
+/* 帮助微控制器进行通信与NeoPixel */
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 /* 定义标准短延时和标准长延时 */
