@@ -33,7 +33,7 @@ void Tripleflash()
       pixels.setPixelColor(j, pixels.Color(150, 0, 0));
     }
     pixels.show();
-    delay(50);
+    delay(75);
     for (int j = 0; j < 3; j++)
     {
       pixels.setPixelColor(j, pixels.Color(0, 0, 0));
@@ -42,7 +42,7 @@ void Tripleflash()
     delay(DELAYVAL);
   }
   pixels.clear();
-  delay(50);
+  delay(75);
   for (int i = 0; i < 3; i++)
   {
     for (int j = 6; j < 9; j++)
@@ -50,13 +50,13 @@ void Tripleflash()
       pixels.setPixelColor(j, pixels.Color(0, 0, 150));
     }
     pixels.show();
-    delay(50);
+    delay(75);
     for (int j = 6; j < 9; j++)
     {
       pixels.setPixelColor(j, pixels.Color(0, 0, 0));
     }
     pixels.show();
-    delay(50);
+    delay(75);
   }
   pixels.clear();
   delay(DELAYFOO);
