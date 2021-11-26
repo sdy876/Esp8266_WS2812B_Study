@@ -17,8 +17,6 @@
 /* 帮助微控制器进行通信与NeoPixel */
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
-const char *ssid = "AP01"; 
-const char *password = "12345678";
 /* 定义标准短延时和标准长延时 */
 #define DELAYVAL 100
 #define DELAYFOO 400
@@ -26,15 +24,9 @@ const char *password = "12345678";
 /*  初始化LED,只执行一次  */
 void setup()
 {
-  Serial.begin(9600);
-  WiFi.softAP(ssid, password);
   WiFiManager wifiManager;
   wifiManager.autoConnect("SETTINGS AP");
   wifiManager.autoConnect("SETTINGS AP", "12345678");
-  Serial.println("");
-  Serial.print("ESP8266 Connected to ");
-  Serial.println(WiFi.SSID());
-  Serial.println(WiFi.localIP());
   pixels.begin();
 }
 
