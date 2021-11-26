@@ -4,6 +4,11 @@
 /* 包含Ardinou标准头文件 和 Adafruit灯珠控制头文件 */
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <WiFiManager.h>
 
 /* 定义数据针脚为 D5，定义灯珠数量为 12 */
 #define PIN D5
@@ -12,6 +17,8 @@
 /* 帮助微控制器进行通信与NeoPixel */
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
+const char *ssid = "AP01"; 
+const char *password = "12345678";
 /* 定义标准短延时和标准长延时 */
 #define DELAYVAL 100
 #define DELAYFOO 400
@@ -19,6 +26,15 @@ Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 /*  初始化LED,只执行一次  */
 void setup()
 {
+  Serial.begin(9600);
+  WiFi.softAP(ssid, password);
+  WiFiManager wifiManager;
+  wifiManager.autoConnect("SETTINGS AP");
+  wifiManager.autoConnect("SETTINGS AP", "12345678");
+  Serial.println("");
+  Serial.print("ESP8266 Connected to ");
+  Serial.println(WiFi.SSID());
+  Serial.println(WiFi.localIP());
   pixels.begin();
 }
 
