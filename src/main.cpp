@@ -143,9 +143,48 @@ void Real_partol()
   pixels.clear();
 }
 
+// 红色呼吸灯启动和熄灭
+void Breath()
+{
+  int j = 0;
+  int i = 0;
+  while (j <= 150)
+  {
+    for (i = 0; i < 12; i++)
+    {
+      pixels.setPixelColor(i, pixels.Color(j, 0, 0));
+    }
+    pixels.show();
+    j++;
+    pixels.setPixelColor(i, pixels.Color(j, 0, 0));
+    pixels.show();
+    delay(20);
+  }
+  delay(200);
+  j = 150;
+  while (j >= 0)
+  {
+    for (i = 0; i < 12; i++)
+    {
+      pixels.setPixelColor(i, pixels.Color(j, 0, 0));
+    }
+    pixels.show();
+    j--;
+    pixels.setPixelColor(i, pixels.Color(j, 0, 0));
+    pixels.show();
+    delay(20);
+  }
+}
+
 /* 主功能函数，循环执行 */
 void loop()
 {
+  for (int x = 0; x < 3; x++)
+  {
+    Breath();
+    delay(DELAYVAL);
+  }
+  delay(DELAYFOO);
   for (int x = 0; x < 3; x++)
   {
     Real_partol();
