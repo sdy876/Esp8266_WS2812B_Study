@@ -1,20 +1,17 @@
 /*  ESP8266模块在Nodemcu开发板上的程序实操  */
 /*  12个WS2812B模块组成的灯环实现模拟警灯的各种显示效果  */
+/*  实现用智能手机（或者其他终端）对ESP8266进行配网 */
 
-/* 包含Ardinou标准头文件 和 Adafruit灯珠控制头文件 */
+/* 包含Ardinou标准头文件 Adafruit灯珠控制头文件和WifiManager配网头文件 */
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-#include <DNSServer.h>
-#include <ESP8266WebServer.h>
 #include <WiFiManager.h>
 
 /* 定义数据针脚为 D5，定义灯珠数量为 12 */
 #define PIN D5
 #define NUMPIXELS 12
 
-/* 帮助微控制器进行通信与NeoPixel */
+/* 帮助微控制器与NeoPixel进行通信 */
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 /* 定义标准短延时和标准长延时 */
@@ -24,9 +21,10 @@ Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 /*  初始化LED,只执行一次  */
 void setup()
 {
+//建立WiFiManager对象 ，下列为链接到ESP8266时的WiFi名称
   WiFiManager wifiManager;
-  wifiManager.autoConnect("SETTINGS AP");
-  wifiManager.autoConnect("SETTINGS AP", "12345678");
+  wifiManager.autoConnect("ESP8266 配网助手");
+//如果连接成功，则启动预设的LED灯显示作为指示
   pixels.begin();
 }
 
