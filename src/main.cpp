@@ -178,7 +178,7 @@ void Breath()
     j--;
     pixels.setPixelColor(i, pixels.Color(j, 0, 0));
     pixels.show();
-    delay(20);
+    delay(40);
   }
 }
 
