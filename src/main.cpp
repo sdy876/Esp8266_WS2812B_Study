@@ -21,10 +21,10 @@ Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 /*  初始化LED,只执行一次  */
 void setup()
 {
-//建立WiFiManager对象 ，下列为链接到ESP8266时的WiFi名称
+  //建立WiFiManager对象 ，下列为链接到ESP8266时的WiFi名称
   WiFiManager wifiManager;
   wifiManager.autoConnect("ESP8266 配网助手");
-//如果连接成功，则启动预设的LED灯显示作为指示
+  //如果连接成功，则启动预设的LED灯显示作为指示
   pixels.begin();
 }
 
@@ -150,7 +150,7 @@ void Real_partol()
 }
 
 // 红色呼吸灯启动和熄灭
-void Breath()
+void Breath_Red()
 {
   int j = 0;
   int i = 0;
@@ -175,19 +175,50 @@ void Breath()
       pixels.setPixelColor(i, pixels.Color(j, 0, 0));
     }
     pixels.show();
-    j=j-2;
+    j = j - 2;
     pixels.setPixelColor(i, pixels.Color(j, 0, 0));
     pixels.show();
     delay(40);
   }
 }
-
+// 蓝色呼吸灯启动和熄灭
+void Breath_Blue()
+{
+  int j = 0;
+  int i = 0;
+  while (j <= 150)
+  {
+    for (i = 0; i < 12; i++)
+    {
+      pixels.setPixelColor(i, pixels.Color(0, 0, j));
+    }
+    pixels.show();
+    j++;
+    pixels.setPixelColor(i, pixels.Color(0, 0, j));
+    pixels.show();
+    delay(20);
+  }
+  delay(200);
+  j = 150;
+  while (j >= 0)
+  {
+    for (i = 0; i < 12; i++)
+    {
+      pixels.setPixelColor(i, pixels.Color(0, 0, j));
+    }
+    pixels.show();
+    j = j - 2;
+    pixels.setPixelColor(i, pixels.Color(0, 0, j));
+    pixels.show();
+    delay(40);
+  }
+}
 /* 主功能函数，循环执行 */
 void loop()
 {
   for (int x = 0; x < 2; x++)
   {
-    Breath();
+    Breath_Red();
     delay(DELAYVAL);
   }
   delay(DELAYFOO);
@@ -212,6 +243,12 @@ void loop()
   for (int x = 0; x < 3; x++)
   {
     Tripleflash();
+    delay(DELAYVAL);
+  }
+  delay(DELAYFOO);
+  for (int x = 0; x < 2; x++)
+  {
+    Breath_Blue();
     delay(DELAYVAL);
   }
   delay(DELAYFOO);
