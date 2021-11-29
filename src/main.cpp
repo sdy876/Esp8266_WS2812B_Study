@@ -185,7 +185,7 @@ void Breath()
 /* 主功能函数，循环执行 */
 void loop()
 {
-  for (int x = 0; x < 3; x++)
+  for (int x = 0; x < 2; x++)
   {
     Breath();
     delay(DELAYVAL);
